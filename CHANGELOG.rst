@@ -2,9 +2,11 @@
 Changelog
 =========
 
-Version 0.1
-===========
+Version 1.0.0
+=============
 
-- Feature A added
-- FIX: nasty bug #1729 fixed
-- add your changes here!
+- Added "kill_all" cmd/terminal command (to help in windows env)
+- Added excel_util.py to help deal with sheets
+- Added file_sys.py to help deal with files
+- Added log.py to assist logging
+

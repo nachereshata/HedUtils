@@ -64,7 +64,7 @@ def main(args):
         log.init(args.loglevel)
 
     victims = proc_util.kill_all(name=args.name, pattern=args.pattern, dry=args.dry)
-    _logger.debug(f"kill_all details:\n" + tabulate(victims, headers="keys"))
+    print(f"kill_all summary:\n" + tabulate(victims, headers="keys"))
 
 
 def run():

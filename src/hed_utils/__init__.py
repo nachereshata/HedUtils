@@ -10,10 +10,8 @@ except DistributionNotFound:
 finally:
     del get_distribution, DistributionNotFound
 
-from . import persistence
 from . import support
 
 __all__ = [
-    "persistence",
-    "support"
+    "support",
 ]

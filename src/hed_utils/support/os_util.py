@@ -7,8 +7,8 @@ from typing import List
 
 import psutil
 
-from hed_utils.persistence import file_sys
 from hed_utils.support import log
+from hed_utils.support.persistence import file_sys
 
 __author__ = "nachereshata"
 __copyright__ = "nachereshata"

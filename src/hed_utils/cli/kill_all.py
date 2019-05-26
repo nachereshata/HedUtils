@@ -4,9 +4,7 @@ import sys
 
 from tabulate import tabulate
 
-from hed_utils import log
-
-from hed_utils.env import proc_util
+from hed_utils.support import log, os_util
 
 __author__ = "nachereshata"
 __copyright__ = "nachereshata"
@@ -20,22 +18,38 @@ def _parse_args(args):
 
     parser.add_argument("-n", "--name",
                         dest="name",
-                        help="Exact name of the processes to kill",
+                        help="Name of the processes to kill",
                         metavar="NAME",
+                        type=str,
                         default=None)
 
     parser.add_argument("-p", "--pattern",
                         dest="pattern",
                         help="Regex pattern used for matching the process name",
                         metavar="PATTERN",
+                        type=str,
+                        default=None)
+
+    parser.add_argument("-i", "--ignorecase",
+                        dest="ignorecase",
+                        help="Flag for matching the name/pattern",
+                        metavar="IGNORECASE",
+                        type=bool,
+                        default=False)
+
+    parser.add_argument("-pid", "--pid",
+                        dest="pid",
+                        help="Process id of the target",
+                        metavar="PID",
+                        type=int,
                         default=None)
 
     parser.add_argument("-d", "--dry",
                         dest="dry",
-                        help="Make a dry run (don't kill - just log)",
-                        action="store_const",
-                        const=True,
-                        default=False)
+                        help="Make a dry run (don't kill - just print the victims)",
+                        metavar="DRY",
+                        type=bool,
+                        default=True)
 
     parser.add_argument("-v", "--verbose",
                         dest="loglevel",
@@ -58,13 +72,19 @@ def main(args):
     Args:
       args ([str]): command line parameter list
     """
+
     args = _parse_args(args)
+    print(f"kill_all(name='{args.name}', pattern='{args.pattern}', pid='{args.pid}', ignorecase='{args.ignorecase}', "
+          f"dry='{args.dry}')")
 
     if args.loglevel:
-        log.init(args.loglevel)
+        log.init(level=args.loglevel)
 
-    victims = proc_util.kill_all(name=args.name, pattern=args.pattern, dry=args.dry)
-    print(f"kill_all summary:\n" + tabulate(victims, headers="keys"))
+    victims = [victim._asdict()
+               for victim
+               in os_util.kill_all(name=args.name, pattern=args.pattern, pid=args.pid, dry=args.dry)]
+
+    print(f"kill_all victims:\n" + tabulate(victims, headers="keys"))
 
 
 def run():

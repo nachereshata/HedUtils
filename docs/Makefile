@@ -8,7 +8,7 @@ PAPER         =
 BUILDDIR      = _build
 AUTODOCDIR    = api
 AUTODOCBUILD  = sphinx-apidoc
-PROJECT       = HedUtils
+PROJECT       = hed_utils
 MODULEDIR     = ../src/hed_utils
 
 # User-friendly check for sphinx-build

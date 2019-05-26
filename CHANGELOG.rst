@@ -10,3 +10,9 @@ Version 1.0.0
 - Added file_sys.py to help deal with files
 - Added log.py to assist logging
 
+Version 1.1.0
+=============
+
+- improved logging
+- improved `kill_all` interface
+- restructured project

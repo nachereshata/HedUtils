@@ -1,15 +1,16 @@
 ========
-HedUtils
+hed_utils
 ========
 
 
-Pack of helper modules
+Pack of helper modules (and some CLI bindings)
 
 
 Description
 ===========
 
-A longer description of your project goes here...
+CLI bindings:
+    - "kill_all" - kill all processes by name/pattern or pid
 
 
 Note

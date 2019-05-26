@@ -1,8 +1,8 @@
 ========
-HedUtils
+hed_utils
 ========
 
-This is the documentation of **HedUtils**.
+This is the documentation of **hed_utils**.
 
 .. note::
 

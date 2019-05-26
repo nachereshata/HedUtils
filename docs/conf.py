@@ -81,7 +81,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'HedUtils'
+project = u'hed_utils'
 copyright = u'2019, nachereshata'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -235,7 +235,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'user_guide.tex', u'HedUtils Documentation',
+  ('index', 'user_guide.tex', u'hed_utils Documentation',
    u'nachereshata', 'manual'),
 ]
 

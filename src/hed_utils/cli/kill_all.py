@@ -88,8 +88,8 @@ def main(args):
 
 
 def run():
-    """Entry point for console_scripts
-    """
+    """Entry point for console_scripts"""
+
     main(sys.argv[1:])
 
 

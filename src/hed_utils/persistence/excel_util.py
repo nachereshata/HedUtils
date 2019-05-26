@@ -1,10 +1,10 @@
-from typing import List, Dict, Union
 from pathlib import Path
+from typing import List, Dict, Union
 
 from xlrd import open_workbook
 from xlwt import XFStyle, Workbook
 
-from hed_utils import log
+from hed_utils.support import log
 
 FLOAT_FMT = XFStyle()
 FLOAT_FMT.num_format_str = "##0.00"

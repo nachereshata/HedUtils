@@ -1,21 +1,23 @@
+import inspect
 import logging
 import sys
-import inspect
 from collections import OrderedDict
-from functools import wraps, partial
 from datetime import datetime
-from timeit import default_timer as now
+from functools import wraps, partial
 from pathlib import Path
+from timeit import default_timer as now
 from typing import Any, Dict, Optional, List
 
 LOGGER_FMT = "%(levelname)-8s | %(name)-20s | %(indent)s %(message)s"
 PREFIX_UTC = "%(utcnow)s | "
 
-debug = logging.debug
-info = logging.info
-warning = logging.warning
-exception = logging.exception
-error = logging.error
+_logger = logging.getLogger("hed_utils")
+
+debug = _logger.debug
+info = _logger.info
+warning = _logger.warning
+exception = _logger.exception
+error = _logger.error
 
 
 class Indentation:
@@ -47,13 +49,6 @@ def add_tag_factory(tag, callback):
     logging.setLogRecordFactory(new_factory)
 
 
-def _add_file_handler(logger: logging.Logger, fmt: str, file: str):
-    formatter = logging.Formatter(fmt=fmt)
-    handler = logging.FileHandler(filename=str(Path(file)), encoding="utf-8")
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
-
-
 def init(*, level=None, fmt=None, utc_prefix=True, file=None):
     if level is None:
         level = logging.DEBUG
@@ -73,7 +68,10 @@ def init(*, level=None, fmt=None, utc_prefix=True, file=None):
         add_tag_factory("utcnow", lambda: datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f"))
 
     if file:
-        _add_file_handler(logging.getLogger(), fmt, file)
+        formatter = logging.Formatter(fmt=fmt)
+        handler = logging.FileHandler(filename=str(Path(file).absolute()), encoding="utf-8")
+        handler.setFormatter(formatter)
+        _logger.addHandler(handler)
 
 
 class CallFormatter:

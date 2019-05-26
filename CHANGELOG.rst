@@ -16,3 +16,8 @@ Version 1.1.0
 - improved logging
 - improved `kill_all` interface
 - restructured project
+
+Version 1.1.1
+=============
+
+- fixes in kill_all cli

@@ -33,8 +33,8 @@ def _parse_args(args):
     parser.add_argument("-i", "--ignorecase",
                         dest="ignorecase",
                         help="Flag for matching the name/pattern",
-                        metavar="IGNORECASE",
-                        type=bool,
+                        action="store_const",
+                        const=True,
                         default=False)
 
     parser.add_argument("-pid", "--pid",
@@ -47,8 +47,15 @@ def _parse_args(args):
     parser.add_argument("-d", "--dry",
                         dest="dry",
                         help="Make a dry run (don't kill - just print the victims)",
-                        metavar="DRY",
-                        type=bool,
+                        action="store_const",
+                        const=True,
+                        default=True)
+
+    parser.add_argument("-nd", "--not-dry",
+                        dest="dry",
+                        help="Not a dry run (kill and print the victims)",
+                        action="store_const",
+                        const=False,
                         default=True)
 
     parser.add_argument("-v", "--verbose",

@@ -1,5 +1,6 @@
 from datetime import datetime
 from functools import partial
+from json import loads, dumps
 from multiprocessing import Process
 from pathlib import Path
 from platform import system
@@ -7,7 +8,6 @@ from shutil import copyfile, copytree
 from subprocess import call
 from tempfile import gettempdir
 from typing import Union
-
 from hed_utils import log
 
 
@@ -115,3 +115,17 @@ def view_text(text: str):
     file = get_tmp_location("text_view.txt")
     write_text(text=text, file=file)
     view_file(file, safe=True)
+
+
+@log.call
+def read_json(file: str):
+    path = Path(file)
+    with path.open("rb") as in_file:
+        return loads(in_file.read().decode(encoding="utf-8"))
+
+
+@log.call
+def write_json(obj, file: str):
+    path = Path(file)
+    with path.open("wb") as out_file:
+        out_file.write(dumps(obj).encode(encoding="utf-8"))
